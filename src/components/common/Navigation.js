@@ -1,9 +1,9 @@
-import React, { Component } from "react";
 import { Navbar, Nav, Container } from "react-bootstrap";
-class Navigation extends Component {
-  render() {
-    return (
-      <Navbar bg="primary" expand="lg" variant="dark">
+import React from 'react';
+
+const Navigation = () => {
+  return (
+    <Navbar bg="primary" expand="lg" variant="dark">
         <Container>
           <Navbar.Brand href="#home">CRUD Cafe</Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -16,8 +16,7 @@ class Navigation extends Component {
           </Navbar.Collapse>
         </Container>
       </Navbar>
-    );
-  }
-}
+  );
+};
 
 export default Navigation;
