@@ -1,19 +1,22 @@
 {
-  "posts": [
+  "productos": [
     {
       "id": 1,
-      "title": "json-server",
-      "author": "typicode"
-    }
-  ],
-  "comments": [
+      "nombreProducto": "Té de manzanilla",
+      "precioProducto": "40",
+      "categoria": "bebida-caliente"
+    },
     {
-      "id": 1,
-      "body": "some comment",
-      "postId": 1
+      "id": 2,
+      "nombreProducto": "Café con leche",
+      "precioProducto": "60",
+      "categoria": "bebida-caliente"
+    },
+    {
+      "id": 3,
+      "nombreProducto": "Medialuna x unidad",
+      "precioProducto": "35",
+      "categoria": "dulce"
     }
-  ],
-  "profile": {
-    "name": "typicode"
-  }
+  ]
 }
