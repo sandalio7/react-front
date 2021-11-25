@@ -41,6 +41,24 @@
       "precioProducto": "100",
       "categoria": "bebida-caliente",
       "id": 7
+    },
+    {
+      "nombreProducto": "Licuado",
+      "precioProducto": "150",
+      "categoria": "bebida-fria",
+      "id": 8
+    },
+    {
+      "nombreProducto": "dsg",
+      "precioProducto": "456",
+      "categoria": "bebida-fria",
+      "id": 9
+    },
+    {
+      "nombreProducto": "Pan x kg",
+      "precioProducto": "100",
+      "categoria": "salado",
+      "id": 10
     }
   ]
 }
