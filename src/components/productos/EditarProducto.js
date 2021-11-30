@@ -6,6 +6,8 @@ const EditarProducto = () => {
   const { id } = useParams();
   console.log(id);
   const [producto, setProducto] = useState({});
+  const [categoria, setCategoria] = useState('');
+
   const URL = process.env.REACT_APP_API_URL + "/" + id;
 
   useEffect(async () => {
@@ -17,6 +19,7 @@ const EditarProducto = () => {
         const dato = await respuesta.json();
         // console.log(dato)
         setProducto(dato);
+        setCategoria(dato.categoria);
       }
     } catch (error) {
       console.log(error);
@@ -31,22 +34,30 @@ const EditarProducto = () => {
       <Form className="my-5">
         <Form.Group className="mb-3" controlId="formBasicEmail">
           <Form.Label>Nombre del producto*</Form.Label>
-          <Form.Control type="text" placeholder="Ej: café" />
+          <Form.Control
+            type="text"
+            placeholder="Ej: café"
+            defaultValue={producto.nombreProducto}
+          />
         </Form.Group>
 
         <Form.Group className="mb-3" controlId="formBasicPassword">
           <Form.Label>Precio*</Form.Label>
-          <Form.Control type="number" placeholder="ej: 50" />
+          <Form.Control
+            type="number"
+            placeholder="ej: 50"
+            defaultValue={producto.precioProducto}
+          />
         </Form.Group>
         <Form.Group className="mb-3" controlId="formBasicCheckbox">
           <Form.Label>Categoria*</Form.Label>
-          <Form.Select>
-            <option>Seleccione una opcion</option>
-            <option>Bebida Caliente</option>
-            <option>Bebida Fria</option>
-            <option>Sandwich</option>
-            <option>Dulce</option>
-            <option>Salado</option>
+          <Form.Select value={categoria} onChange={(e)=>setCategoria(e.target.value)}>
+            <option value="">Seleccione una opcion</option>
+            <option value="bebida-caliente">Bebida Caliente</option>
+            <option value="bebida-fria">Bebida Fria</option>
+            <option value="sandwich">Sandwich</option>
+            <option value="dulce">Dulce</option>
+            <option value="salado">Salado</option>
           </Form.Select>
         </Form.Group>
         <Button variant="primary" type="submit" className="w-100">
