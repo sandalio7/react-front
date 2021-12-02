@@ -1,10 +1,10 @@
 {
   "productos": [
     {
-      "id": 1,
       "nombreProducto": "Té de manzanilla",
-      "precioProducto": "40",
-      "categoria": "bebida-caliente"
+      "precioProducto": "45",
+      "categoria": "bebida-caliente",
+      "id": 1
     },
     {
       "id": 2,
@@ -26,13 +26,13 @@
     },
     {
       "nombreProducto": "Medialuna con dulce de leche",
-      "precioProducto": "65",
-      "categoria": "dulce",
+      "precioProducto": "50",
+      "categoria": "salado",
       "id": 5
     },
     {
-      "nombreProducto": "brownie",
-      "precioProducto": "50",
+      "nombreProducto": "brownie con nueces",
+      "precioProducto": "60",
       "categoria": "dulce",
       "id": 6
     },

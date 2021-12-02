@@ -1,12 +1,16 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Form, Button, Container } from "react-bootstrap";
 import { useParams } from "react-router-dom";
+import Swal from "sweetalert2";
+import { campoRequerido, rangoPrecio } from "../helpers/helpers";
 
-const EditarProducto = () => {
+const EditarProducto = (props) => {
   const { id } = useParams();
-  console.log(id);
   const [producto, setProducto] = useState({});
   const [categoria, setCategoria] = useState('');
+  //crear variables de referencias
+  const nombreProductoRef = useRef('');
+  const precioProductoRef = useRef(0);
 
   const URL = process.env.REACT_APP_API_URL + "/" + id;
 
@@ -27,17 +31,59 @@ const EditarProducto = () => {
     }
   }, []);
 
+  const handleSubmit = async(e)=>{
+    e.preventDefault();
+    // console.log(nombreProductoRef)
+    // console.log(nombreProductoRef.current.value)
+    //validar los datos
+    if(campoRequerido(nombreProductoRef.current.value) && rangoPrecio(precioProductoRef.current.value) && campoRequerido(categoria)){
+      //crear un objeto y enviarlo a la api
+      const productoModificado = {
+        nombreProducto: nombreProductoRef.current.value,
+        precioProducto: precioProductoRef.current.value,
+        categoria
+      }
+
+      console.log(productoModificado)
+      // pedir modificar datos a la api, peticion PUT
+      try{
+        const respuesta = await fetch(URL,{
+          method:"PUT",
+          headers: {"Content-Type":"application/json"},
+          body: JSON.stringify(productoModificado)
+        })
+
+        console.log(respuesta);
+        if(respuesta.status === 200){
+          Swal.fire(
+            'Producto modificado','EL producto fue correctamente actualizado','success'
+          )
+          props.consultarAPI();
+        }
+
+      }catch(error){
+        console.log(error);
+        //mostrar msj al usuario
+      }
+    }else{
+      console.log('error al validar los campos')
+      //mostrar mensaje de error
+    }
+
+  }
+
   return (
     <Container>
       <h1 className="display-3 text-center my-4">Editar Producto</h1>
       <hr />
-      <Form className="my-5">
+      <Form className="my-5" onSubmit={handleSubmit}>
         <Form.Group className="mb-3" controlId="formBasicEmail">
           <Form.Label>Nombre del producto*</Form.Label>
           <Form.Control
             type="text"
             placeholder="Ej: café"
             defaultValue={producto.nombreProducto}
+            ref={nombreProductoRef}
           />
         </Form.Group>
 
@@ -47,6 +93,7 @@ const EditarProducto = () => {
             type="number"
             placeholder="ej: 50"
             defaultValue={producto.precioProducto}
+            ref={precioProductoRef}
           />
         </Form.Group>
         <Form.Group className="mb-3" controlId="formBasicCheckbox">
