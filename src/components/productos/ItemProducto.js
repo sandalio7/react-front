@@ -5,7 +5,7 @@ import {Link} from 'react-router-dom';
 
 const ItemProducto = (props) => {
   const eliminarProducto = () => {
-    console.log(props.producto.id);
+    console.log(props.producto._id);
     Swal.fire({
       title: "¿Esta seguro de eliminar el producto?",
       text: "No se puede recuperar un producto eliminado",
@@ -19,7 +19,7 @@ const ItemProducto = (props) => {
       if (result.isConfirmed) {
         // pedir a la api borrar un producto
         try {
-          const URL = process.env.REACT_APP_API_URL + "/" + props.producto.id;
+          const URL = process.env.REACT_APP_API_URL + "/" + props.producto._id;
 
           const respuesta = await fetch(URL, {
             method: "DELETE",
@@ -54,7 +54,7 @@ const ItemProducto = (props) => {
         </span>
       </p>
       <div>
-        <Link to={`/productos/editar/${props.producto.id}`} className='btn btn-warning me-2'>Editar</Link>
+        <Link to={`/productos/editar/${props.producto._id}`} className='btn btn-warning me-2'>Editar</Link>
         <Button variant="danger" onClick={() => eliminarProducto()}>
           Borrar
         </Button>
