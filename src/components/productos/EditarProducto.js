@@ -44,7 +44,7 @@ const EditarProducto = (props) => {
         categoria
       }
 
-      console.log(productoModificado)
+      //console.log(productoModificado)
       // pedir modificar datos a la api, peticion PUT
       try{
         const respuesta = await fetch(URL,{
@@ -53,7 +53,7 @@ const EditarProducto = (props) => {
           body: JSON.stringify(productoModificado)
         })
 
-        console.log(respuesta);
+        //console.log(respuesta);
         if(respuesta.status === 200){
           Swal.fire(
             'Producto modificado','EL producto fue correctamente actualizado','success'
